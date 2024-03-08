@@ -28,7 +28,27 @@ const store = createStore({
       const authResponse = await res.json();
       commit("setUser", authResponse);
       return authResponse;
-    }
+    },
+    register: async ({commit}, user) => {
+      const requestBody = JSON.stringify({
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        password_confirmation: user.confirmPassword
+      })
+      const url = `http://127.0.0.1:8000/api/register`
+      const res = await fetch(`${url}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        method: "POST",
+        body: requestBody
+      });
+      const authResponse = await res.json();
+      commit("setUser", authResponse);
+      return authResponse;
+    },
     
   },
   mutations: {
