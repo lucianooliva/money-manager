@@ -24,8 +24,8 @@
             <span class="text-red-500 text-sm" v-show="confirmPasswordInvalid">A confirmação de senha não pode ser em branco e deve ser igual à senha digitada anteriormente</span>
           </div>
           <div class="flex items-center justify-between">
-            <button type="submit" class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Register</button>
-            <p class="text-gray-600">Already have an account? <a href="/login" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a></p>
+            <button type="submit" class="bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-darker focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Register</button>
+            <p class="text-gray-600">Already have an account? <a href="/login" class="font-medium text-primary hover:text-primary-lighter">Sign in</a></p>
           </div>
         </form>
       </div>
@@ -81,7 +81,7 @@
       alert('Passwords do not match');
       return;
     }
-    store.dispatch('register', user.value)
+    store.dispatch('auth/register', user.value)
       .then(() => {
         router.push({
           name: 'Home'
@@ -91,7 +91,7 @@
   
   </script>
   
-  <style>
+  <style scoped>
   .register-container {
     width: 100%;
     min-height: 100%;
