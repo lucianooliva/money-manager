@@ -19,13 +19,13 @@
               <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
             </div>
             <div class="text-sm">
-              <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
+              <a href="#" class="font-medium text-primary hover:text-primary-lighter">Forgot your password?</a>
             </div>
           </div>
-          <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">Login</button>
+          <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-darker">Login</button>
         </form>
         <div class="mt-4 text-sm text-center">
-          <p class="text-gray-600">Don't have an account? <a href="/register" class="font-medium text-indigo-600 hover:text-indigo-500">Register</a></p>
+          <p class="text-gray-600">Don't have an account? <a href="/register" class="font-medium text-primary hover:text-primary-lighter">Register</a></p>
         </div>
       </div>
     </div>
@@ -53,7 +53,7 @@
     settings[field]()
   }
   function login() {
-    store.dispatch('login', user.value)
+    store.dispatch('auth/login', user.value)
       .then(() => {
         router.push({
           name: 'Home'
@@ -66,7 +66,7 @@
   }
     
   </script>
-  <style>
+  <style scoped>
   .login-container {
     width: 100%;
     min-height: 100%;
