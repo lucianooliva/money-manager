@@ -1,11 +1,85 @@
 body {
-  background-color: rgb(238, 238, 238);
+  /*background-color: rgb(238, 238, 238);*/
+  background-color: #f7f3e8;
 }
 #app {
   min-height: 100vh;
   position: relative;
   display: flex;
 }
-input:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none !important;
+}
+
+.form-input {
+  padding: 4px 10px;
+  border: 1px solid rgb(240, 240, 240);
+  background-color: rgba(239, 239, 239, 0.3);
+}
+input.form-input {
+  height: 33px;
+  padding-bottom: 12px;
+}
+textarea.form-input {
+  height: 46px;
+}
+.form-input:disabled {
+  background-color: white !important;
+}
+.panel-container {
+  display: flex;
+  flex-direction: row;
+}
+.panel-container>.col-1 {
+  width: 100%;
+}
+.panel-container>.col-2 {
+  width: calc(50% - 0.375em);
+}
+.panel-container>.col-3 {
+  width: calc(33% - 0.375em);
+}
+@media (max-width: 768px) {
+  .panel-container {
+    flex-direction: column;
+  }
+  .panel-container>.col-1,
+  .panel-container>.col-2,
+  .panel-container>.col-3 {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+.panel {
+  margin: 0.375em;
+  margin-right: 0;
+  margin-left: 0;
+  background-color: white;
+}
+.panel-header {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.form-info {
+  flex-direction: column;
+}
+.form-info label {
+  font-weight: bold;
+  margin: 5px;
+  padding: 2px;
+}
+.blur {
+  filter: blur(5px);
+}
+.margin-1em {
+  margin: 1em;
+}
+canvas {
+  width: 100% !important;
+  height: 100% !important;
 }
