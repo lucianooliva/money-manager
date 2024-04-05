@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router"
 import store from "../store"
+import { emailSendingIsConfigured } from "../../config/index.js"
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
@@ -18,7 +19,7 @@ const routes = [
     path: '/',
     component: DefaultLayout,
     redirect: '/home',
-    meta: { requiresAuth: true, requiresVerifiedEmail: true },
+    meta: { requiresAuth: true, requiresVerifiedEmail: emailSendingIsConfigured },
     children: [
       { path: '/home', name: 'Home', component: Home },
       { path: '/monthly-bills', name: 'MonthlyBills', component: MonthlyBills },
@@ -43,19 +44,19 @@ const routes = [
     path: '/user-menu',
     name: 'UserMenu',
     component: UserMenu,
-    meta: { requiresAuth: true, requiresVerifiedEmail: true },
+    meta: { requiresAuth: true, requiresVerifiedEmail: emailSendingIsConfigured },
   },
   {
     path: '/register',
     name: 'Register',
     component: Register,
-    meta: { isGuest: true }
+    meta: { isGuest: true, requiresVerifiedEmail: emailSendingIsConfigured }
   },
   {
     path: '/login',
     name: 'Login',
     component: Login,
-    meta: { isGuest: true }
+    meta: { isGuest: true, requiresVerifiedEmail: emailSendingIsConfigured }
   }
 ];
 
