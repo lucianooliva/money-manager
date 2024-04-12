@@ -75,7 +75,7 @@ router.beforeEach((to, from, next) => {
   else if (to.meta.requiresAuth && to.meta.requiresVerifiedEmail && !verifiedEmail) {
     next({name: 'VerifyYourEmail'})
   }
-  else if (to.meta.requiresAuth && !to.meta.requiresVerifiedEmail && verifiedEmail) {
+  else if (to.fullPath !== '/home' && to.meta.requiresAuth && !to.meta.requiresVerifiedEmail && verifiedEmail) {
     next({name: 'Home'})
   }
   else if (to.meta.isGuest && hasSession && verifiedEmail) {
