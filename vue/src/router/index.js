@@ -50,13 +50,13 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register,
-    meta: { isGuest: true, requiresVerifiedEmail: emailSendingIsConfigured }
+    meta: { isGuest: true, requiresVerifiedEmail: false }
   },
   {
     path: '/login',
     name: 'Login',
     component: Login,
-    meta: { isGuest: true, requiresVerifiedEmail: emailSendingIsConfigured }
+    meta: { isGuest: true, requiresVerifiedEmail: false }
   }
 ];
 
@@ -66,20 +66,16 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const verifiedEmail = store.state.auth.user.verifiedEmail === 'true'
+  const verifiedEmail = emailSendingIsConfigured && store.state.auth.user.verifiedEmail === 'true'
   const hasSession = store.state.auth.user.token
-
   if (to.meta.requiresAuth && !hasSession) {
     next({name: 'Login'})
   }
-  else if (to.meta.requiresAuth && to.meta.requiresVerifiedEmail && !verifiedEmail) {
+  else if (to.meta.isGuest && hasSession) {
+    next({name: 'Home'}) // When to.fullPath === '/home', router will deal with the email verification requirement
+  }
+  else if (to.meta.requiresVerifiedEmail && !verifiedEmail) {
     next({name: 'VerifyYourEmail'})
-  }
-  else if (to.fullPath !== '/home' && to.meta.requiresAuth && !to.meta.requiresVerifiedEmail && verifiedEmail) {
-    next({name: 'Home'})
-  }
-  else if (to.meta.isGuest && hasSession && verifiedEmail) {
-    next({name: 'Home'})
   }
   else {
     next()
